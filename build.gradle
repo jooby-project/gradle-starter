@@ -1,0 +1,47 @@
+buildscript {
+  ext {
+    joobyVersion = "1.2.0-SNAPSHOT"
+  }
+
+  repositories {
+    mavenLocal()
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath "com.google.gradle:osdetector-gradle-plugin:1.4.0"
+    classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
+    classpath "org.jooby:jooby-gradle-plugin:$joobyVersion"
+  }
+}
+
+apply plugin: "io.spring.dependency-management"
+apply plugin: "com.google.osdetector"
+apply plugin: "application"
+apply plugin: "jooby"
+
+group "org.jooby"
+version "1.0"
+mainClassName = "starter.gradle.App"
+sourceCompatibility = 1.8
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+}
+
+dependencyManagement {
+  imports {
+    mavenBom "org.jooby:jooby-bom:$joobyVersion"
+  }
+}
+
+dependencies {
+  compile "org.jooby:jooby-netty"
+  compile "io.netty:netty-tcnative-boringssl-static:${dependencyManagement.importedProperties['boringssl.version']}:${osdetector.classifier}"
+}
+
+/** We diverge from the default resources structure to adopt the Jooby standard: */
+sourceSets.main.resources {
+  srcDirs = ["conf", "public"]
+}
