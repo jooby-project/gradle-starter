@@ -8,7 +8,10 @@ import org.jooby.Jooby;
 public class App extends Jooby {
 
   {
-    get("/", () -> "Hello Gradle!!");
+    get(req -> {
+      String name = req.param("name").value("Jooby");
+      return "Hello " + name + "!";
+    });
   }
 
   public static void main(String[] args) {

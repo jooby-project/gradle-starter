@@ -1,6 +1,6 @@
 buildscript {
   ext {
-    joobyVersion = "1.2.0-SNAPSHOT"
+    joobyVersion = "1.2.0"
   }
 
   repositories {
@@ -20,7 +20,7 @@ apply plugin: "com.google.osdetector"
 apply plugin: "application"
 apply plugin: "jooby"
 
-group "org.jooby"
+group "starter.gradle"
 version "1.0"
 mainClassName = "starter.gradle.App"
 sourceCompatibility = 1.8
@@ -39,6 +39,9 @@ dependencyManagement {
 dependencies {
   compile "org.jooby:jooby-netty"
   compile "io.netty:netty-tcnative-boringssl-static:${dependencyManagement.importedProperties['boringssl.version']}:${osdetector.classifier}"
+
+  testCompile "junit:junit:4.12"
+  testCompile "io.rest-assured:rest-assured:3.0.5"
 }
 
 /** We diverge from the default resources structure to adopt the Jooby standard: */
