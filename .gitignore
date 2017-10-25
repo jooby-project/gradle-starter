@@ -22,4 +22,4 @@ pom.xml.versionsBackup
 jacoco.exec
 build
 .gradle
-gradle-wrapper.jar
+!gradle-wrapper.jar
