@@ -39,7 +39,7 @@ dependencyManagement {
 dependencies {
   compile "org.jooby:jooby-netty"
   compile "io.netty:netty-transport-native-epoll:${dependencyManagement.importedProperties['netty.version']}:${osdetector.classifier}"
-  compile "io.netty:netty-tcnative-boringssl-static:${dependencyManagement.importedProperties['boringssl.version']}"
+  compile "io.netty:netty-tcnative-boringssl-static:${dependencyManagement.importedProperties['boringssl.version']}" 
 
   testCompile "junit:junit:4.12"
   testCompile "io.rest-assured:rest-assured:3.0.5"
