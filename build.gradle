@@ -1,6 +1,6 @@
 buildscript {
   ext {
-    joobyVersion = "1.4.0"
+    joobyVersion = "1.4.1"
   }
 
   repositories {
@@ -38,11 +38,11 @@ dependencyManagement {
 
 dependencies {
   compile "org.jooby:jooby-netty"
-  compile "io.netty:netty-transport-native-epoll:${dependencyManagement.importedProperties['netty.version']}:${osdetector.classifier}"
+  compile "io.netty:netty-transport-native-epoll:${dependencyManagement.importedProperties['netty.version']}:${osdetector.classifier.contains('linux') ? 'linux-x86_64' : ''}"
   compile "io.netty:netty-tcnative-boringssl-static:${dependencyManagement.importedProperties['boringssl.version']}" 
 
   testCompile "junit:junit:4.12"
-  testCompile "io.rest-assured:rest-assured:3.0.5"
+  testCompile "io.rest-assured:rest-assured:3.1.0"
 }
 
 /** We diverge from the default resources structure to adopt the Jooby standard: */
